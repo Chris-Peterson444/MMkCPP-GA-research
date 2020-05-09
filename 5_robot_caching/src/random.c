@@ -10,7 +10,7 @@
 /* GLOBAL VARIABLES */
 
 double oldrand[56];     /* array of 55 random numbers */
-int    jrand;          /* current random */
+int    jrand;          /* current random */ // But this always get set to 0??
 
 /* FUNCTIONS */
 

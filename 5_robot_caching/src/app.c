@@ -990,6 +990,7 @@ void AppSkipline(FILE *fp)
   }
 }
 
+// What is app? Do you mean we're reading in the graph?
 void AppInit(char *appInfile, Population *p)
 {
 

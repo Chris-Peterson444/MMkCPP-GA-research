@@ -333,14 +333,16 @@ void Initialize(int argc, char *argv[],
 	Population *p, Functions *f)
 {
 	/* initialize everything */
+
+  // What is this for?
 	char ncfile[1024];
 	int c;
 
 
 	/* defaults are in defaults.h */
-	p->seed = SEED;
-	p->lambda = LAMBDA;
-	p->min = p->max = p->avg = -1.0;
+	p->seed = SEED; // For randomness??
+	p->lambda = LAMBDA; // Lambda for what?
+	p->min = p->max = p->avg = -1.0; // Why aren't these set in the default
 
 	/* 1st arg to strcreat shd be null */
 	p->oFile = NULL;
@@ -350,12 +352,16 @@ void Initialize(int argc, char *argv[],
 	p->pidFile = p->fitFile = NULL;
 	p->caseFileName = p->nCFile = NULL;
 
+  // Dynamically setting file name size
 	strcreate(&(p->oFile), OUTPUTFILE);
 	strcreate(&(p->caseFileName), CASEFILE);
+
+  // More file name edits
 	strcpy(ncfile, CASEFILE);
 	strcat(ncfile, ".nmc");
 	strcreate(&(p->nCFile), ncfile);
 
+  // Setting 'workhorse' stuff from defaults
 	p->popsize = POPSIZE;
 	p->maxgen = MAXGEN;
 	p->chromLength = CHROMLENGTH;
@@ -363,24 +369,26 @@ void Initialize(int argc, char *argv[],
 	p->pMut = PMUT;
 	p->nXPoints = NXPOINTS;
 	p->scaleFactor = SCALEFACTOR;
-	p->maximize = TRUE;
+	p->maximize = TRUE; // Maximize what?
 
+  // Inject? Is this a GA thing? A CPP thing?
 	p->injectFraction = 0.0;
 	p->injectPeriod = 0;
 	p->injectStop = MAXGEN / 2;
-	p->saveCases = FALSE;
+	p->saveCases = FALSE; 
 
+  // Set default functions 
 	f->Crossover = CROSSOVER;
 	f->CurrentGA = CURRENTGA;
-	f->FindMate = FINDMATE;
+	f->FindMate = FINDMATE; 
 
 	/* end defaults */
 
 	/* input file overides command line options */
-	p->seed = atof(argv[7]);
-	p->iFile = argv[2];
-	p->appInfile = argv[4];
-	p->maximize = FALSE;
+	p->seed = atof(argv[7]); // Command arg 7??????? 
+	p->iFile = argv[2];      // What is this
+	p->appInfile = argv[4];  // What is this
+	p->maximize = FALSE;     // Why did we set it true earlier???
 	//while ((c = getopt(argc, argv, "i:o:s:a:vM")) != EOF){
 
 	//  switch (c) {
@@ -417,10 +425,12 @@ void Initialize(int argc, char *argv[],
 	//  }
 	//}
 
+  // If the infile isn't null, we set some values
 	if (p->iFile != NULL) {
 		GetInputParameters(p, f);
 	}
 
+  // We've made 55 random numbers, somewhere
 	Randomize(p->seed);
 
 	/* Initialize globals */
@@ -432,6 +442,7 @@ void Initialize(int argc, char *argv[],
 	}
 	p->bigMaxi = -1;
 
+  // Didn't we already do this in cigar.c before the call? Yes. Yes we did.
 	p->generation = 0;
 
 	if (p->appInfile != NULL) /* from command line */

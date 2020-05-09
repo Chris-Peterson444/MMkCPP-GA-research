@@ -40,6 +40,7 @@ void DeAllocateIndividuals(IPTR pj, int howmany)
   return;
 }
 
+// Dynamic file name size
 void strcreate(char **dest, char *src) {
   if(*dest != NULL) {
     fprintf(stderr, "Strcreat: Dest should be set to NULL\n");
